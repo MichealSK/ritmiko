@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://u0q3ti4rt2tc"]
+
+[ext_resource type="Script" path="res://scenes/note.cs" id="1_3ss7i"]
+[ext_resource type="Texture2D" uid="uid://x1bgn3fju4m0" path="res://sprites/key.png" id="1_dtmuq"]
+[ext_resource type="Texture2D" uid="uid://dqd02xysqnjma" path="res://sprites/spacebar.png" id="3_mxedr"]
+[ext_resource type="Texture2D" uid="uid://eg36b63eawi2" path="res://sprites/hold_note.png" id="4_480o6"]
+
+[node name="note" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3ss7i")
+
+[node name="texture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_dtmuq")
+
+[node name="texture2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_mxedr")
+
+[node name="texture3" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_480o6")

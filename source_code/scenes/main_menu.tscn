@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=3 uid="uid://csx781bcr4e0h"]
+
+[ext_resource type="VideoStream" path="res://sprites/flag.ogv" id="1_5v5jr"]
+[ext_resource type="FontFile" uid="uid://c8qc8m6uabdx2" path="res://fonts/duality.ttf" id="1_wl81u"]
+[ext_resource type="Script" path="res://scenes/main_menu_buttons.cs" id="2_8i2hg"]
+[ext_resource type="PackedScene" uid="uid://cjncw7nxj5uc2" path="res://scenes/fadeinout.tscn" id="2_vsvy7"]
+[ext_resource type="PackedScene" uid="uid://5cql3piht78i" path="res://scenes/menu_button.tscn" id="2_wnewl"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="videoplayer" type="VideoStreamPlayer" parent="."]
+z_index = -3
+layout_mode = 0
+offset_left = -56.0
+offset_top = -34.0
+offset_right = 1224.0
+offset_bottom = 686.0
+stream = ExtResource("1_5v5jr")
+autoplay = true
+loop = true
+
+[node name="fadeinout" parent="." instance=ExtResource("2_vsvy7")]
+z_index = 5
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1189.0
+offset_bottom = 674.0
+
+[node name="title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 63.0
+offset_right = 975.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_wl81u")
+theme_override_font_sizes/font_size = 40
+text = "РИТМИКО
+Ритам Игра со Македонски Народни Песни"
+horizontal_alignment = 1
+
+[node name="main_menu_buttons" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 304.0
+offset_top = 221.0
+offset_right = 864.0
+offset_bottom = 578.0
+script = ExtResource("2_8i2hg")
+
+[node name="start_game" parent="main_menu_buttons" instance=ExtResource("2_wnewl")]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 80.0
+offset_right = 392.0
+offset_bottom = 150.0
+parentFunctionId = "song_select"
+labelText = "Старт"
+
+[node name="settings" parent="main_menu_buttons" instance=ExtResource("2_wnewl")]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 168.0
+offset_right = 393.0
+offset_bottom = 233.0
+parentFunctionId = "Settings"
+labelText = "Контроли"
+
+[node name="exit" parent="main_menu_buttons" instance=ExtResource("2_wnewl")]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 253.0
+offset_right = 393.0
+offset_bottom = 318.0
+parentFunctionId = "exit"
+labelText = "Излез"

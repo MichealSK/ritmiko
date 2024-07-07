@@ -1,0 +1,161 @@
+[gd_scene load_steps=7 format=3 uid="uid://yobt1ijfaktc"]
+
+[ext_resource type="PackedScene" uid="uid://cjncw7nxj5uc2" path="res://scenes/fadeinout.tscn" id="1_88nkm"]
+[ext_resource type="VideoStream" path="res://sprites/flag.ogv" id="1_cggdl"]
+[ext_resource type="FontFile" uid="uid://c8qc8m6uabdx2" path="res://fonts/duality.ttf" id="2_bc82d"]
+[ext_resource type="PackedScene" uid="uid://5cql3piht78i" path="res://scenes/menu_button.tscn" id="2_u72ky"]
+[ext_resource type="Script" path="res://scenes/song_selection.cs" id="3_lpaii"]
+[ext_resource type="Script" path="res://scenes/settings_buttons.cs" id="4_vhrcd"]
+
+[node name="song_select" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="videoplayer" type="VideoStreamPlayer" parent="."]
+modulate = Color(0, 0.670588, 0.129412, 1)
+z_index = -3
+layout_mode = 0
+offset_left = -56.0
+offset_top = -34.0
+offset_right = 1224.0
+offset_bottom = 686.0
+stream = ExtResource("1_cggdl")
+autoplay = true
+loop = true
+
+[node name="fadeinout" parent="." instance=ExtResource("1_88nkm")]
+z_index = 1
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1189.0
+offset_bottom = 674.0
+
+[node name="title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 194.0
+offset_top = 49.0
+offset_right = 981.0
+offset_bottom = 121.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_bc82d")
+theme_override_font_sizes/font_size = 40
+text = "Одбери Песна"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 142.0
+offset_right = 647.0
+offset_bottom = 537.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+script = ExtResource("3_lpaii")
+
+[node name="makedonsko_devojche" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_u72ky")]
+layout_mode = 2
+parentFunctionId = "makedonsko_devojche"
+hoverFunctionId = "makedonsko_devojche"
+labelText = "Македонско Девојче"
+minimumWidth = 600
+stayHovered = true
+
+[node name="nalej_nalej" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_u72ky")]
+layout_mode = 2
+parentFunctionId = "nalej_nalej"
+hoverFunctionId = "nalej_nalej"
+labelText = "Налеј, Налеј"
+minimumWidth = 600
+stayHovered = true
+
+[node name="stani_mome" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_u72ky")]
+layout_mode = 2
+parentFunctionId = "stani_mome"
+hoverFunctionId = "stani_mome"
+labelText = "Стани Моме да Заиграш"
+minimumWidth = 600
+stayHovered = true
+
+[node name="back_to_main" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 560.0
+offset_right = 261.0
+offset_bottom = 636.0
+script = ExtResource("4_vhrcd")
+
+[node name="back_to_main" parent="back_to_main" instance=ExtResource("2_u72ky")]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 5.0
+offset_right = 243.0
+offset_bottom = 75.0
+parentFunctionId = "mainmenu"
+labelText = "Почетно Мени"
+minimumWidth = 320
+
+[node name="song_title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 137.0
+offset_right = 1074.0
+offset_bottom = 373.0
+scale = Vector2(1.2, 1.2)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_bc82d")
+theme_override_font_sizes/font_size = 30
+text = "Македонско Девојче"
+horizontal_alignment = 1
+
+[node name="stats" type="Label" parent="song_title"]
+layout_mode = 0
+offset_left = 76.6667
+offset_top = 108.333
+offset_right = 290.667
+offset_bottom = 275.333
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_bc82d")
+theme_override_font_sizes/font_size = 25
+text = "Score: 0
+Accuracy: 0%
+Longest Combo: 0"
+
+[node name="difficulty" type="Label" parent="song_title"]
+layout_mode = 0
+offset_left = 61.6667
+offset_top = 232.5
+offset_right = 275.667
+offset_bottom = 280.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_bc82d")
+theme_override_font_sizes/font_size = 25
+text = "Difficulty: ★☆☆☆☆"
+
+[node name="rank" type="Label" parent="song_title"]
+layout_mode = 0
+offset_left = 63.3334
+offset_top = 45.0
+offset_right = 333.333
+offset_bottom = 103.0
+scale = Vector2(1.2, 1.2)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_bc82d")
+theme_override_font_sizes/font_size = 40
+text = "RANK: N/A"

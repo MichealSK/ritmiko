@@ -1,0 +1,287 @@
+[gd_scene load_steps=7 format=3 uid="uid://wdwolyfm6ar"]
+
+[ext_resource type="PackedScene" uid="uid://cjncw7nxj5uc2" path="res://scenes/fadeinout.tscn" id="1_iif5n"]
+[ext_resource type="PackedScene" uid="uid://5cql3piht78i" path="res://scenes/menu_button.tscn" id="1_qbvb8"]
+[ext_resource type="FontFile" uid="uid://c8qc8m6uabdx2" path="res://fonts/duality.ttf" id="1_rnc3d"]
+[ext_resource type="VideoStream" path="res://sprites/flag.ogv" id="1_yg80b"]
+[ext_resource type="Script" path="res://scenes/settings_buttons.cs" id="3_nyp51"]
+[ext_resource type="Script" path="res://scenes/change_controls.cs" id="5_76npc"]
+
+[node name="setting_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="videoplayer" type="VideoStreamPlayer" parent="."]
+modulate = Color(0, 0.670588, 1, 1)
+z_index = -3
+layout_mode = 0
+offset_left = -56.0
+offset_top = -34.0
+offset_right = 1224.0
+offset_bottom = 686.0
+stream = ExtResource("1_yg80b")
+autoplay = true
+loop = true
+
+[node name="fadeinout" parent="." instance=ExtResource("1_iif5n")]
+z_index = 1
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1189.0
+offset_bottom = 674.0
+
+[node name="title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 194.0
+offset_top = 49.0
+offset_right = 981.0
+offset_bottom = 121.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_rnc3d")
+theme_override_font_sizes/font_size = 40
+text = "Подесување на Контроли"
+horizontal_alignment = 1
+
+[node name="labels" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="note1" type="Label" parent="labels"]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 199.0
+offset_right = 421.0
+offset_bottom = 262.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_rnc3d")
+theme_override_font_sizes/font_size = 40
+text = "D"
+horizontal_alignment = 1
+
+[node name="note2" type="Label" parent="labels"]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 279.0
+offset_right = 421.0
+offset_bottom = 342.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_rnc3d")
+theme_override_font_sizes/font_size = 40
+text = "F"
+horizontal_alignment = 1
+
+[node name="note4" type="Label" parent="labels"]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 364.0
+offset_right = 421.0
+offset_bottom = 427.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_rnc3d")
+theme_override_font_sizes/font_size = 40
+text = "J"
+horizontal_alignment = 1
+
+[node name="note5" type="Label" parent="labels"]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 440.0
+offset_right = 421.0
+offset_bottom = 503.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_rnc3d")
+theme_override_font_sizes/font_size = 40
+text = "K"
+horizontal_alignment = 1
+
+[node name="note_space" type="Label" parent="labels"]
+layout_mode = 0
+offset_left = 557.0
+offset_top = 434.0
+offset_right = 1067.0
+offset_bottom = 495.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_rnc3d")
+theme_override_font_sizes/font_size = 40
+text = "Копче за нота 3: SPACE BAR"
+
+[node name="back_to_song" type="Label" parent="labels"]
+layout_mode = 0
+offset_left = 557.0
+offset_top = 363.0
+offset_right = 1101.0
+offset_bottom = 424.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_rnc3d")
+theme_override_font_sizes/font_size = 40
+text = "Назад до избор на песна: ESC"
+
+[node name="ghost_tapping" type="Label" parent="labels"]
+layout_mode = 0
+offset_left = 904.0
+offset_top = 203.0
+offset_right = 971.0
+offset_bottom = 266.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_rnc3d")
+theme_override_font_sizes/font_size = 40
+text = "Off"
+horizontal_alignment = 1
+
+[node name="ghost_tapping2" type="Label" parent="labels"]
+layout_mode = 0
+offset_left = 902.0
+offset_top = 282.0
+offset_right = 969.0
+offset_bottom = 345.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_rnc3d")
+theme_override_font_sizes/font_size = 40
+text = "Off"
+horizontal_alignment = 1
+
+[node name="settings_buttons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_nyp51")
+
+[node name="note_1" parent="settings_buttons" instance=ExtResource("1_qbvb8")]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 197.0
+offset_right = 283.0
+offset_bottom = 262.0
+parentFunctionId = "note1"
+labelText = "Копче за нота 1"
+minimumWidth = 300
+
+[node name="note_2" parent="settings_buttons" instance=ExtResource("1_qbvb8")]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 277.0
+offset_right = 283.0
+offset_bottom = 342.0
+parentFunctionId = "note2"
+labelText = "Копче за нота 2"
+minimumWidth = 300
+
+[node name="note_4" parent="settings_buttons" instance=ExtResource("1_qbvb8")]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 357.0
+offset_right = 283.0
+offset_bottom = 422.0
+parentFunctionId = "note4"
+labelText = "Копче за нота 4"
+minimumWidth = 300
+
+[node name="note_5" parent="settings_buttons" instance=ExtResource("1_qbvb8")]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 437.0
+offset_right = 283.0
+offset_bottom = 502.0
+parentFunctionId = "note5"
+labelText = "Копче за нота 5"
+minimumWidth = 300
+
+[node name="back_to_main" parent="settings_buttons" instance=ExtResource("1_qbvb8")]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 565.0
+offset_right = 283.0
+offset_bottom = 630.0
+parentFunctionId = "mainmenu"
+labelText = "Почетно Мени"
+minimumWidth = 300
+
+[node name="toggle_ghost_tap" parent="settings_buttons" instance=ExtResource("1_qbvb8")]
+layout_mode = 0
+offset_left = 552.0
+offset_top = 195.0
+offset_right = 793.0
+offset_bottom = 265.0
+tooltip_text = "Дали кликање на тастерот за нота кога нема ноти ќе резултира во \"Miss\"?
+Стандардно е на \"Off\"."
+parentFunctionId = "toggleGhost"
+labelText = "Ghost Tapping"
+minimumWidth = 300
+
+[node name="delete_results" parent="settings_buttons" instance=ExtResource("1_qbvb8")]
+layout_mode = 0
+offset_left = 787.0
+offset_top = 565.0
+offset_right = 1028.0
+offset_bottom = 635.0
+parentFunctionId = "deletesavedata"
+labelText = "Избриши Savefile"
+minimumWidth = 320
+
+[node name="delete_results2" parent="settings_buttons" instance=ExtResource("1_qbvb8")]
+layout_mode = 0
+offset_left = 787.0
+offset_top = 669.0
+offset_right = 1028.0
+offset_bottom = 739.0
+parentFunctionId = "deletesavedataSURE"
+labelText = "Потврди"
+minimumWidth = 320
+
+[node name="toggle_invincibility" parent="settings_buttons" instance=ExtResource("1_qbvb8")]
+layout_mode = 0
+offset_left = 553.0
+offset_top = 277.0
+offset_right = 794.0
+offset_bottom = 347.0
+tooltip_text = "Доколку е вклучено, нема можност за Game Over."
+parentFunctionId = "toggleInvincibility"
+labelText = "Непобедливост"
+minimumWidth = 300
+
+[node name="press_key" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 650.0
+color = Color(0.203922, 0.203922, 0.203922, 0.886275)
+script = ExtResource("5_76npc")
+
+[node name="title" type="Label" parent="press_key"]
+layout_mode = 0
+offset_left = 181.0
+offset_top = 252.0
+offset_right = 968.0
+offset_bottom = 365.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_rnc3d")
+theme_override_font_sizes/font_size = 40
+text = "Притисни го копчето на кое сакаш 
+да ја промениш нотата"
+horizontal_alignment = 1

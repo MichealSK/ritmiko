@@ -1,0 +1,295 @@
+[gd_scene load_steps=15 format=3 uid="uid://rp0lpskmvhql"]
+
+[ext_resource type="Script" path="res://scenes/note_menu.cs" id="1_7ichm"]
+[ext_resource type="PackedScene" uid="uid://d13jlbh87s3xc" path="res://scenes/playernotes.tscn" id="1_fdmp0"]
+[ext_resource type="FontFile" uid="uid://c8qc8m6uabdx2" path="res://fonts/duality.ttf" id="2_1ab4o"]
+[ext_resource type="VideoStream" path="res://sprites/flag.ogv" id="2_drid8"]
+[ext_resource type="AudioStream" uid="uid://26wvvbnvpntx" path="res://sound/note_hit.mp3" id="4_lvdgo"]
+[ext_resource type="Script" path="res://scenes/charter.cs" id="4_r3o63"]
+[ext_resource type="AudioStream" uid="uid://2nc57eqhth2o" path="res://sound/nalej_nalej.mp3" id="6_iqqbo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16wyv"]
+bg_color = Color(0.346882, 0.69702, 0.240084, 1)
+
+[sub_resource type="Animation" id="Animation_ddd1m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(937, 500)]
+}
+
+[sub_resource type="Animation" id="Animation_5fpth"]
+resource_name = "bop"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(937, 500), Vector2(937, 480), Vector2(937, 500)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("audio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_lvdgo")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ccga0"]
+_data = {
+"RESET": SubResource("Animation_ddd1m"),
+"bop": SubResource("Animation_5fpth")
+}
+
+[sub_resource type="Animation" id="Animation_8drjx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["3"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("song:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_yfkc3"]
+resource_name = "start"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["3", "2", "1", "GO!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("song:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.3533),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6m8mi"]
+_data = {
+"RESET": SubResource("Animation_8drjx"),
+"start": SubResource("Animation_yfkc3")
+}
+
+[node name="note_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7ichm")
+
+[node name="videoplayer" type="VideoStreamPlayer" parent="."]
+z_index = -3
+layout_mode = 0
+offset_left = -56.0
+offset_top = -34.0
+offset_right = 1224.0
+offset_bottom = 686.0
+stream = ExtResource("2_drid8")
+autoplay = true
+loop = true
+
+[node name="players" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="player1" parent="players" instance=ExtResource("1_fdmp0")]
+layout_mode = 1
+offset_left = 380.0
+offset_top = 12.0
+offset_right = 340.0
+offset_bottom = -28.0
+scale = Vector2(1.3, 1.3)
+noteSpeed = 4.5
+songSheet = "stani_mome"
+
+[node name="hp" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 1125.0
+offset_top = 31.0
+offset_right = 1143.0
+offset_bottom = 628.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_16wyv")
+value = 50.0
+fill_mode = 3
+show_percentage = false
+
+[node name="stats" type="Label" parent="."]
+layout_mode = 2
+offset_left = 7.0
+offset_top = 474.0
+offset_right = 221.0
+offset_bottom = 641.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_1ab4o")
+theme_override_font_sizes/font_size = 25
+text = "Accuracy: 100%
+Perfect: 0
+Hit: 0
+Misses: 0
+Longest Combo: 0"
+
+[node name="combo" type="Label" parent="."]
+layout_mode = 2
+offset_left = 937.0
+offset_top = 500.0
+offset_right = 1159.0
+offset_bottom = 559.0
+theme_override_colors/font_color = Color(0.780392, 0.52549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_1ab4o")
+theme_override_font_sizes/font_size = 40
+text = "Combo: 0"
+
+[node name="animplayer" type="AnimationPlayer" parent="combo"]
+libraries = {
+"": SubResource("AnimationLibrary_ccga0")
+}
+
+[node name="audio" type="AudioStreamPlayer" parent="combo"]
+
+[node name="score" type="Label" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+offset_left = 830.0
+offset_top = 556.0
+offset_right = 1100.0
+offset_bottom = 614.0
+scale = Vector2(1.2, 1.2)
+theme_override_colors/font_color = Color(0.780392, 0.52549, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_1ab4o")
+theme_override_font_sizes/font_size = 40
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="prompts" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 224.0
+offset_top = 152.0
+offset_right = 264.0
+offset_bottom = 192.0
+
+[node name="charter" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_r3o63")
+chartingLatency = 1
+
+[node name="321GO" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+offset_left = 457.0
+offset_top = 276.0
+offset_right = 679.0
+offset_bottom = 335.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_1ab4o")
+theme_override_font_sizes/font_size = 80
+text = "3"
+horizontal_alignment = 1
+
+[node name="song" type="AudioStreamPlayer" parent="321GO"]
+stream = ExtResource("6_iqqbo")
+
+[node name="animplayer" type="AnimationPlayer" parent="321GO"]
+libraries = {
+"": SubResource("AnimationLibrary_6m8mi")
+}
+autoplay = "start"
+
+[node name="ColorRect" type="ColorRect" parent="321GO"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -464.0
+offset_top = -283.0
+offset_right = 703.0
+offset_bottom = 376.0
+color = Color(0, 0, 0, 1)

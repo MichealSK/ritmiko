@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4uqp4jdsqh2d"]
+
+[ext_resource type="FontFile" uid="uid://c8qc8m6uabdx2" path="res://fonts/duality.ttf" id="1_43wnp"]
+
+[sub_resource type="Animation" id="Animation_kx0eo"]
+resource_name = "autoplay"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-78, -15), Vector2(-160, -117), Vector2(-8.00002, -117)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(0.1, 0.1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.47),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vii3a"]
+_data = {
+"autoplay": SubResource("Animation_kx0eo")
+}
+
+[node name="prompt" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="stats" type="Label" parent="."]
+layout_mode = 0
+offset_left = -78.0
+offset_top = -15.0
+offset_right = 82.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_43wnp")
+theme_override_font_sizes/font_size = 25
+text = "Perfect!"
+horizontal_alignment = 1
+
+[node name="animation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../stats")
+libraries = {
+"": SubResource("AnimationLibrary_vii3a")
+}
+autoplay = "autoplay"

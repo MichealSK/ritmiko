@@ -1,0 +1,108 @@
+[gd_scene load_steps=8 format=3 uid="uid://ch7ybj21m1x6d"]
+
+[ext_resource type="PackedScene" uid="uid://cjncw7nxj5uc2" path="res://scenes/fadeinout.tscn" id="1_lxpfl"]
+[ext_resource type="VideoStream" path="res://sprites/flag.ogv" id="1_pp2a3"]
+[ext_resource type="AudioStream" uid="uid://4rnnl3a3oly4" path="res://sound/game_over.mp3" id="2_b4i60"]
+[ext_resource type="Script" path="res://scenes/settings_buttons.cs" id="3_gu54r"]
+[ext_resource type="PackedScene" uid="uid://5cql3piht78i" path="res://scenes/menu_button.tscn" id="4_5n3ls"]
+[ext_resource type="FontFile" uid="uid://c8qc8m6uabdx2" path="res://fonts/duality.ttf" id="5_jg18a"]
+[ext_resource type="Script" path="res://scenes/obidi_se_povtorno.cs" id="5_kj3ys"]
+
+[node name="game_over_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="videoplayer" type="VideoStreamPlayer" parent="."]
+modulate = Color(0.75339, 2.38247e-06, 5.77569e-07, 1)
+z_index = -3
+layout_mode = 0
+offset_left = -56.0
+offset_top = -34.0
+offset_right = 1224.0
+offset_bottom = 686.0
+stream = ExtResource("1_pp2a3")
+autoplay = true
+loop = true
+
+[node name="fadeinout" parent="." instance=ExtResource("1_lxpfl")]
+z_index = 1
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1189.0
+offset_bottom = 674.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_b4i60")
+autoplay = true
+
+[node name="back_to_main" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 560.0
+offset_right = 261.0
+offset_bottom = 636.0
+script = ExtResource("3_gu54r")
+
+[node name="back_to_main" parent="back_to_main" instance=ExtResource("4_5n3ls")]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 5.0
+offset_right = 243.0
+offset_bottom = 75.0
+parentFunctionId = "mainmenu"
+labelText = "Почетно Мени"
+minimumWidth = 320
+
+[node name="obidi_se_povtorno" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 480.0
+offset_right = 261.0
+offset_bottom = 556.0
+script = ExtResource("5_kj3ys")
+
+[node name="back_to_main" parent="obidi_se_povtorno" instance=ExtResource("4_5n3ls")]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 5.0
+offset_right = 243.0
+offset_bottom = 75.0
+parentFunctionId = "songmenu"
+labelText = "Обиди се повторно"
+minimumWidth = 320
+
+[node name="label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 239.0
+offset_right = 683.0
+offset_bottom = 297.0
+scale = Vector2(1.2, 1.2)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("5_jg18a")
+theme_override_font_sizes/font_size = 40
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 295.0
+offset_right = 967.0
+offset_bottom = 367.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("5_jg18a")
+theme_override_font_sizes/font_size = 40
+text = "Промаши премногу ноти"
+horizontal_alignment = 1
